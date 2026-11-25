@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://byute50gyjr6r"]
+
+[ext_resource type="Texture2D" uid="uid://ohxm8lew2gam" path="res://assets/sprites/slime_green.png" id="1_371uh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2gj0"]
+atlas = ExtResource("1_371uh")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6pvg"]
+atlas = ExtResource("1_371uh")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjw23"]
+atlas = ExtResource("1_371uh")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2npkn"]
+atlas = ExtResource("1_371uh")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d4lbn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2gj0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6pvg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjw23")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2npkn")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Slime" type="Node2D" unique_id=1642600260]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1367788862]
+sprite_frames = SubResource("SpriteFrames_d4lbn")
+autoplay = "default"
+frame_progress = 0.4358958
+
+[node name="RightRayCast" type="RayCast2D" parent="." unique_id=42914820]
+position = Vector2(1, 5)
+target_position = Vector2(11, 0)
+
+[node name="LeftRayCast" type="RayCast2D" parent="." unique_id=158446982]
+position = Vector2(1, 5)
+target_position = Vector2(-13, 0)
