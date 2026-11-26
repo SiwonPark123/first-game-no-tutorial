@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://byute50gyjr6r"]
 
 [ext_resource type="Texture2D" uid="uid://ohxm8lew2gam" path="res://assets/sprites/slime_green.png" id="1_371uh"]
+[ext_resource type="Script" uid="uid://bt4l0nisl1wej" path="res://scripts/slime.gd" id="1_p2gj0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p2gj0"]
 atlas = ExtResource("1_371uh")
@@ -39,6 +40,7 @@ animations = [{
 }]
 
 [node name="Slime" type="Node2D" unique_id=1642600260]
+script = ExtResource("1_p2gj0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1367788862]
 sprite_frames = SubResource("SpriteFrames_d4lbn")
@@ -47,8 +49,8 @@ frame_progress = 0.4358958
 
 [node name="RightRayCast" type="RayCast2D" parent="." unique_id=42914820]
 position = Vector2(1, 5)
-target_position = Vector2(11, 0)
+target_position = Vector2(7, 0)
 
 [node name="LeftRayCast" type="RayCast2D" parent="." unique_id=158446982]
 position = Vector2(1, 5)
-target_position = Vector2(-13, 0)
+target_position = Vector2(-9, 0)
