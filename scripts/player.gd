@@ -36,6 +36,8 @@ func _physics_process(delta: float) -> void:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
+	else:
+		velocity.x = 0
 
 	move_and_slide()
 
@@ -56,7 +58,6 @@ func _on_slime_killzone_body_entered(body: Node2D) -> void:
 	
 func die():
 	if !dying:
-		print("dead")
 		dying = true
 		animated_sprite.play("death")
 		Engine.time_scale = 0.5
