@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
 
-const SPEED = 150.0
-const JUMP_VELOCITY = -250.0
+var SPEED = 150.0
+var JUMP_VELOCITY = -250.0
 var dying = false
+var god_mode = false
 @onready var restart_timer: Timer = $"../RestartTimer"
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -15,6 +16,14 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
+	
+	if Input.is_action_just_pressed("god_mode"):
+		SPEED = 300
+		JUMP_VELOCITY = -400
+		god_mode = true
+	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 	
 	if !dying:
 		# Handle jump.
@@ -57,7 +66,7 @@ func _on_slime_killzone_body_entered(body: Node2D) -> void:
 	die()
 	
 func die():
-	if !dying:
+	if !dying && !god_mode:
 		dying = true
 		animated_sprite.play("death")
 		Engine.time_scale = 0.5

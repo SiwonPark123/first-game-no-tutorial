@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://0bc047gy2cj4"]
+
+[ext_resource type="Texture2D" uid="uid://dwflr0fk6s08e" path="res://assets/sprites/fruit.png" id="1_lfepc"]
+[ext_resource type="Script" uid="uid://cda5yu00ierim" path="res://scripts/fruit.gd" id="1_yvtr8"]
+[ext_resource type="AudioStream" uid="uid://bbxc85rumqwyq" path="res://assets/sounds/power_up.wav" id="2_yvtr8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnr5y"]
+size = Vector2(9, 11)
+
+[node name="Fruit" type="Area2D" unique_id=1120845684]
+collision_mask = 2
+script = ExtResource("1_yvtr8")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1137503863]
+position = Vector2(0, -2)
+texture = ExtResource("1_lfepc")
+region_enabled = true
+region_rect = Rect2(2, 2, 11, 13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=752328115]
+position = Vector2(0.5, -1.5)
+shape = SubResource("RectangleShape2D_qnr5y")
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="." unique_id=1996648030]
+stream = ExtResource("2_yvtr8")
+bus = &"SFX"
+
+[node name="BufferToWin" type="Timer" parent="." unique_id=1172534382]
+wait_time = 0.5
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="BufferToWin" to="." method="_on_bufferto_win_timeout"]

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d0mk5tacr4qkp" path="res://scripts/coin.gd" id="1_i64fm"]
 [ext_resource type="Texture2D" uid="uid://84ag3fdpoq1q" path="res://assets/sprites/coin.png" id="1_rwqht"]
+[ext_resource type="AudioStream" uid="uid://jc2w1t3bnhog" path="res://assets/sounds/coin.wav" id="3_11l1o"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i64fm"]
 atlas = ExtResource("1_rwqht")
@@ -68,4 +69,12 @@ frame_progress = 0.75276506
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=291056557]
 shape = SubResource("CircleShape2D_d4lbn")
 
+[node name="Pickup" type="AudioStreamPlayer2D" parent="." unique_id=1772346518]
+stream = ExtResource("3_11l1o")
+bus = &"SFX"
+
+[node name="QueueFreeTimer" type="Timer" parent="." unique_id=1951664800]
+wait_time = 0.2
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_queue_free_timer_timeout"]

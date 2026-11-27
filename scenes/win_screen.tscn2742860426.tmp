@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://6oj7gohhwrrv"]
+
+[ext_resource type="FontFile" uid="uid://cjfoxdy0lpbd" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_erk2x"]
+[ext_resource type="PackedScene" uid="uid://bvgpjubeftf72" path="res://scenes/player.tscn" id="2_2l6cc"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_d4lbn"]
+
+[node name="WinScreen" type="Node2D" unique_id=1122117293]
+
+[node name="Label" type="Label" parent="." unique_id=1255161201]
+offset_left = -26.0
+offset_top = -93.0
+offset_right = 14.0
+offset_bottom = -70.0
+theme_override_fonts/font = ExtResource("1_erk2x")
+text = "You Win!"
+
+[node name="Player" parent="." unique_id=785870870 instance=ExtResource("2_2l6cc")]
+position = Vector2(30, -41)
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=19663380]
+zoom = Vector2(4, 4)
+limit_left = -114
+limit_right = 174
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=907807343]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1496424313]
+shape = SubResource("WorldBoundaryShape2D_d4lbn")
