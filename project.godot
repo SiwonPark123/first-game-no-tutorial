@@ -22,6 +22,7 @@ buses/default_bus_layout="uid://b1p13untws5f4"
 [autoload]
 
 Music="*uid://huyh62dcabho"
+CoinSignal="*uid://c4csfrk22my5k"
 
 [display]
 

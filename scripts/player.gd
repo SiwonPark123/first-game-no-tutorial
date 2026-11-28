@@ -5,8 +5,8 @@ var SPEED = 150.0
 var JUMP_VELOCITY = -250.0
 var dying = false
 var god_mode = false
-@onready var restart_timer: Timer = $"../RestartTimer"
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var restart_timer: Timer = %RestartTimer
 
 
 func _physics_process(delta: float) -> void:
@@ -18,11 +18,18 @@ func _physics_process(delta: float) -> void:
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	
 	if Input.is_action_just_pressed("god_mode"):
-		SPEED = 300
-		JUMP_VELOCITY = -400
-		god_mode = true
+		god_mode = !god_mode
+		if god_mode:
+			SPEED = 300
+			JUMP_VELOCITY = -400
+		else:
+			SPEED = 150
+			JUMP_VELOCITY = -250
+		
+		
 	
 	if Input.is_action_just_pressed("restart"):
+		Engine.time_scale = 1
 		get_tree().reload_current_scene()
 	
 	if !dying:
@@ -50,24 +57,14 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-
-
-func _on_world_boundary_body_entered(body: Node2D) -> void:
-	die()
-
-
 func _on_restart_timer_timeout() -> void:
 	dying = false
 	get_tree().reload_current_scene()
 	Engine.time_scale = 1
-
-
-func _on_slime_killzone_body_entered(body: Node2D) -> void:
-	die()
 	
 func die():
 	if !dying && !god_mode:
 		dying = true
 		animated_sprite.play("death")
-		Engine.time_scale = 0.5
 		restart_timer.start()
+		Engine.time_scale = 0.5
